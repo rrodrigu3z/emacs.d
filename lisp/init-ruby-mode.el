@@ -46,16 +46,21 @@
 (after-load 'ruby-compilation
   (defalias 'rake 'ruby-compilation-rake))
 
+;;; To use binding.pry or byebug with rspec
+;;; When you've hit the breakpoint, hit C-x C-q to enable inf-ruby.
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
 
 
 ;;; Robe
-(require-package 'robe)
-(after-load 'ruby-mode
-  (add-hook 'ruby-mode-hook 'robe-mode))
-(after-load 'company
-  (dolist (hook '(ruby-mode-hook inf-ruby-mode-hook html-erb-mode-hook haml-mode))
-    (add-hook hook
-              (lambda () (sanityinc/local-push-company-backend 'company-robe)))))
+;(require-package 'robe)
+;(after-load 'ruby-mode
+;  (add-hook 'ruby-mode-hook 'robe-mode))
+; Disabled because is annoiyng, isn't responsive enough, I prefer simply
+; company autocompletion
+; (after-load 'company
+;   (dolist (hook '(ruby-mode-hook inf-ruby-mode-hook html-erb-mode-hook haml-mode))
+;     (add-hook hook
+;               (lambda () (sanityinc/local-push-company-backend 'company-robe)))))
 
 
 
