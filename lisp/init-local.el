@@ -72,6 +72,11 @@
 (global-set-key (kbd "M-t") #'counsel-projectile-find-file)
 (sanityinc/enable-ivy-flx-matching)
 
+;; Projectile
+(add-to-list 'projectile-globally-ignored-directories "node_modules")
+(add-to-list 'projectile-globally-ignored-directories "dist")
+(add-to-list 'projectile-globally-ignored-directories "tmp")
+
 ;; Editing
 (setq-default cursor-type 'bar)
 (global-subword-mode 1)
@@ -133,26 +138,34 @@
 
 ;; Neotree
 (require-package 'neotree)
-; (global-set-key [f8] 'neotree-toggle)
-(setq projectile-switch-project-action 'neotree-projectile-action)
+                                        ; (global-set-key [f8] 'neotree-toggle)
+                                        ; (setq projectile-switch-project-action 'neotree-projectile-action)
+(setq projectile-switch-project-action 'rrodriguez/neotree-projectile-action)
+
+(defun rrodriguez/neotree-projectile-action ()
+  "Closes NeoTree before running default neotree-projectile-action."
+  (interactive)
+  (neotree-hide)
+  (neotree-projectile-action))
 
 (defun neotree-project-dir ()
-    "Open NeoTree using the git root."
-    (interactive)
-    (let ((project-dir (projectile-project-root))
-          (file-name (buffer-file-name)))
-      (neotree-toggle)
-      (if project-dir
-          (if (neo-global--window-exists-p)
-              (progn
-                (neotree-dir project-dir)
-                (neotree-find file-name)))
-        (message "Could not find git project root."))))
+  "Open NeoTree using the git root."
+  (interactive)
+  (let ((project-dir (projectile-project-root))
+        (file-name (buffer-file-name)))
+    (neotree-toggle)
+    (if project-dir
+        (if (neo-global--window-exists-p)
+            (progn
+              (neotree-dir project-dir)
+              (neotree-find file-name)))
+      (message "Could not find git project root."))))
 
 (global-set-key [f8] 'neotree-project-dir)
 (setq neo-theme 'arrow)
 (setq neo-window-position 'left)
 (setq neo-window-width 40)
+(setq neo-smart-open t)
 
 ;; Yasnippets
 (require 'init-yasnippets)
