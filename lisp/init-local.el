@@ -77,6 +77,11 @@
 (add-to-list 'projectile-globally-ignored-directories "dist")
 (add-to-list 'projectile-globally-ignored-directories "tmp")
 
+;; Perspective
+;; (require-package 'perspective)
+;; (persp-mode)
+;; (require-package 'persp-projectile)
+
 ;; Editing
 (setq-default cursor-type 'bar)
 (global-subword-mode 1)

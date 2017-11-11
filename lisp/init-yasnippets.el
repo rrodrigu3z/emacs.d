@@ -3,10 +3,12 @@
 (require-package 'yasnippet)
 
 (setq yas-snippet-dirs
-     '("~/.emacs.d/plugins/yasnippet/snippets" ;; main yasnippet snippets
-       "~/.emacs.d/plugins/yasnippets-rails/rails-snippets"   ;; rails
-       "~/.emacs.d/plugins/ember-snippets"   ;; Emberjs
-       ))
+      '("~/.emacs.d/plugins/yasnippet/snippets" ;; main yasnippet snippets
+        ;; "~/.emacs.d/plugins/yasnippets-rails/rails-snippets"   ;; rails
+        "~/.emacs.d/plugins/ember-snippets"   ;; Emberjs
+        "~/.emacs.d/plugins/yasnippet/yasmate/snippets"   ;; yasmate
+        "~/.emacs.d/plugins/yasnippet/yasmate/snippets-rails"   ;; yasmate-rails (fix, use ruby-mode)
+        ))
 
 ; (setq yas-snippet-dirs
 ;      '("~/.emacs.d/plugins/yasnippet-snippets/snippets"))
